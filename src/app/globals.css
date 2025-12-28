@@ -1,27 +1,10 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --primary-purple: #584cf4;
+  --dark-bg: #0a0e27;
+  --text-color: #333333;
+  --light-gray: #f3f4f6;
+  --white: #ffffff;
+  --font-family: var(--font-poppins), 'Poppins', var(--font-inter), 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -30,13 +13,181 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  font-family: var(--font-family);
+  background-color: var(--light-gray);
+  color: var(--text-color);
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Layout Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.navbar {
+  background-color: var(--dark-bg);
+  padding: 15px 0;
+  color: var(--white);
+}
+
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--primary-purple);
+  padding: 60px 0 120px; /* Extra padding bottom for overlap */
+  color: var(--white);
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Converter Card */
+.converter-card {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  padding: 40px;
+  margin-top: -80px; /* Negative margin to overlap hero */
+  position: relative;
+  z-index: 10;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-group {
+  display: flex;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.input-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.currency-input, .currency-select {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.currency-input:focus, .currency-select:focus {
+  border-color: var(--primary-purple);
+}
+
+.currency-input {
+    /* Remove default arrows in some browsers */
+    -moz-appearance: textfield;
+}
+.currency-input::-webkit-outer-spin-button,
+.currency-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.swap-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--primary-purple);
+  flex-shrink: 0;
+  margin-bottom: 2px; /* Visual alignment */
+  transition: all 0.2s;
+}
+
+.swap-btn:hover {
+  border-color: var(--primary-purple);
+  background-color: #f8f7ff;
+}
+
+/* Result Section */
+.result-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.conversion-result {
+  flex: 1;
+}
+
+.main-result {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.sub-result {
+  color: #666;
+  font-size: 1rem;
+}
+
+.info-box {
+  background-color: #eef2ff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #444;
+  max-width: 400px;
+  border-left: 4px solid #a5b4fc;
+}
+
+.last-updated {
+  margin-top: 20px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: #888;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .input-group {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .swap-btn {
+    align-self: center;
+    transform: rotate(90deg);
+    margin: -10px 0;
+    background: white;
+    z-index: 5;
   }
 }
